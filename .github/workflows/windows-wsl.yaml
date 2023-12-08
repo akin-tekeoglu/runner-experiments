@@ -16,7 +16,7 @@ jobs:
         shell: pwsh
         run: |
           [System.Environment]::OSVersion.Version
-      - shell: wsl-bash
+      - shell: wsl-bash {0}
         run: |
           whoami
           cat /etc/*-release

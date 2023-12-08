@@ -11,7 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - uses: Vampire/setup-wsl@v2
       - name: Run script
         shell: pwsh
         run: |
-          echo hello world
+          [System.Environment]::OSVersion.Version
+      - shell: wsl-bash {0}
+        run: |
+          lsb_release -a
+          whoami

@@ -1,0 +1,17 @@
+name: Windows WSL Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script
+        shell: pwsh
+        run: |
+          echo hello world

@@ -18,5 +18,6 @@ jobs:
           [System.Environment]::OSVersion.Version
       - shell: wsl-bash {0}
         run: |
-          whoami
-          cat /etc/*-release
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sudo sh get-docker.sh
+          docker ps

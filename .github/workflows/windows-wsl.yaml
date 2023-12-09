@@ -16,6 +16,7 @@ jobs:
         shell: pwsh
         run: |
           [System.Environment]::OSVersion.Version
+          dockerd -H tcp://0.0.0.0:2375
       - shell: wsl-bash {0}
         run: |
           export DEBIAN_FRONTEND=noninteractive

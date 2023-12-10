@@ -23,7 +23,9 @@ jobs:
           sudo apt update -y && sudo apt upgrade -y && sudo apt install curl -y
           curl -fsSL https://get.docker.com -o get-docker.sh
           sudo sh get-docker.sh
-          docker -H tcp://localhost:2375 run --rm -it -p 8080:8080 -e ASPNETCORE_HTTP_PORTS=8080 mcr.microsoft.com/dotnet/samples:aspnetapp
+          docker pull mcr.microsoft.com/dotnet/samples:aspnetapp
+          docker -H tcp://localhost:2375 run -d -p 8080:8080 -e ASPNETCORE_HTTP_PORTS=8080 mcr.microsoft.com/dotnet/samples:aspnetapp
       - shell: pwsh
         run: |
+          Start-Sleep -Seconds 5
           curl localhost:8080/Environment

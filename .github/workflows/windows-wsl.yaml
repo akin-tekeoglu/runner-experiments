@@ -25,4 +25,4 @@ jobs:
           sudo apt update -y && sudo apt upgrade -y && sudo apt install curl -y
           curl -fsSL https://get.docker.com -o get-docker.sh
           sudo sh get-docker.sh
-          docker ps
+          docker -H tcp://localhost:2375 ps

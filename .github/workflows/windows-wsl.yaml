@@ -16,12 +16,13 @@ jobs:
         shell: pwsh
         run: |
           [System.Environment]::OSVersion.Version
-          dockerd -H tcp://0.0.0.0:2375
+          Copy-Item "daemon.json" -Destination "C:\ProgramData\docker\config\daemon.json"
+          restart-service *docker*
+          docker -H tcp://localhost:2375 ps
       - shell: wsl-bash {0}
         run: |
           export DEBIAN_FRONTEND=noninteractive
           sudo apt update -y && sudo apt upgrade -y && sudo apt install curl -y
           curl -fsSL https://get.docker.com -o get-docker.sh
           sudo sh get-docker.sh
-          sudo service docker start
-          sudo docker ps
+          docker ps

@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - master
-
+env:
+  DOCKER_HOST: tcp://localhost:2375
 jobs:
   build:
     runs-on: windows-latest
@@ -24,7 +25,7 @@ jobs:
           curl -fsSL https://get.docker.com -o get-docker.sh
           sudo sh get-docker.sh
           docker pull mcr.microsoft.com/dotnet/samples:aspnetapp
-          docker -H tcp://localhost:2375 run -d -p 8080:8080 -e ASPNETCORE_HTTP_PORTS=8080 mcr.microsoft.com/dotnet/samples:aspnetapp
+          docker run -d -p 8080:8080 -e ASPNETCORE_HTTP_PORTS=8080 mcr.microsoft.com/dotnet/samples:aspnetapp
       - shell: pwsh
         run: |
           Start-Sleep -Seconds 5

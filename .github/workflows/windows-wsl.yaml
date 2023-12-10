@@ -12,17 +12,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - uses: Vampire/setup-wsl@v2
-      - name: Run script
-        shell: pwsh
+      - shell: pwsh
         run: |
           [System.Environment]::OSVersion.Version
           Copy-Item "daemon.json" -Destination "C:\ProgramData\docker\config\daemon.json"
           restart-service *docker*
-          docker -H tcp://localhost:2375 ps
       - shell: wsl-bash {0}
         run: |
           export DEBIAN_FRONTEND=noninteractive
           sudo apt update -y && sudo apt upgrade -y && sudo apt install curl -y
           curl -fsSL https://get.docker.com -o get-docker.sh
           sudo sh get-docker.sh
-          docker -H tcp://localhost:2375 ps
+          docker -H tcp://localhost:2375 run --rm -it -p 8080:8080 -e ASPNETCORE_HTTP_PORTS=8080 mcr.microsoft.com/dotnet/samples:aspnetapp
+      - shell: pwsh
+        run: |
+          curl localhost:8080/Environment

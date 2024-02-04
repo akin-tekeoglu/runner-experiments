@@ -24,4 +24,8 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
-          npx preevy up --debug --github-token=${{ github.token }} --github-pull-request=1 --github-repo="akin-tekeoglu/runner-experiments" --profile "s3://preevy-455217234700-default-s3?region=us-east-1"
+          npx preevy up \
+            --github-token=${{ github.token }} \
+            --github-pull-request=${{ github.event.number }} \
+            --github-repo=${{ github.repo }} \
+            --profile "s3://preevy-455217234700-default-s3?region=us-east-1"

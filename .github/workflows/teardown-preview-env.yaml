@@ -16,4 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          npx preevy down --profile "s3://preevy-455217234700-default-s3?region=us-east-1"
+          npx preevy down \
+            --github-token=${{ github.token }} \
+            --github-pull-request=${{ github.event.number }} \
+            --github-repo=${{ github.repo }} \
+            --profile "s3://preevy-455217234700-default-s3?region=us-east-1"

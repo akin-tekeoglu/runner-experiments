@@ -1,10 +1,19 @@
 name: Create preview environment
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
+    timeout-minutes: 15
+    concurrency: preevy-${{ github.event.number }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -12,9 +21,6 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Azure CLI script
-        uses: azure/CLI@v1
+      - uses: livecycle/preevy-up-action@v2.3.0
         with:
-          azcliversion: latest
-          inlineScript: |
-            az account show
+          profile-url: "s3://preevy-455217234700-default-s3?region=us-east-1"

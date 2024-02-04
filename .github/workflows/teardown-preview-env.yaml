@@ -19,5 +19,5 @@ jobs:
           npx preevy down \
             --github-token=${{ github.token }} \
             --github-pull-request=${{ github.event.number }} \
-            --github-repo=${{ github.repo }} \
+            --github-repo=${{ github.repository }} \
             --profile "s3://preevy-455217234700-default-s3?region=us-east-1"

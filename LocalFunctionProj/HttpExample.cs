@@ -24,7 +24,7 @@ namespace LocalFunctionProj
         [Function("HttpExample")]
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            _logger.LogInformation("C# HTTP trigger function processed a request. second pr changes");
 
             string connectionString = "Host=db;Username=root;Password=1234;Database=test";
             var users=new List<User>();

@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:latest
+    container_name: db
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - ./LocalFunctionProj/Migrations:/docker-entrypoint-initdb.d
   backend:
     build: LocalFunctionProj
     ports:

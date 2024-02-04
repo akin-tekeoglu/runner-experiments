@@ -25,7 +25,6 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
           npx preevy up \
-            --builder=buildx \
             --github-add-build-cache \
             --github-token=${{ github.token }} \
             --github-pull-request=${{ github.event.number }} \

@@ -5,6 +5,3 @@ services:
     build: LocalFunctionProj
     ports:
       - "8080:80"
-x-preevy:
-  plugins:
-    - module: '@preevy/plugin-github'

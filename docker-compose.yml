@@ -14,3 +14,7 @@ services:
     build: LocalFunctionProj
     ports:
       - "8080:80"
+  frontend:
+    build: frontend
+    ports:
+      - "3000:80"

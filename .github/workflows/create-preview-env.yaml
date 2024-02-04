@@ -21,7 +21,5 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: livecycle/preevy-up-action@v2.3.0
-        with:
-          profile-url: "s3://preevy-455217234700-default-s3?region=us-east-1"
-          install: "npm"
+      - run: |
+          npx preevy up --enable-plugin "@preevy/plugin-github" --profile "s3://preevy-455217234700-default-s3?region=us-east-1"

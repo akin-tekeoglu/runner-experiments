@@ -24,4 +24,4 @@ jobs:
       - uses: livecycle/preevy-up-action@v2.3.0
         with:
           profile-url: "s3://preevy-455217234700-default-s3?region=us-east-1"
-          install: "gh-release"
+          install: "npm"
